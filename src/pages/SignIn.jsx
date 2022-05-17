@@ -14,7 +14,7 @@ function SignIn() {
   //to use email and password
   const { email, password } = formData;
 
-  const { navigate, setNavigate } = useNavigate();
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setFormData((prevState) => ({
