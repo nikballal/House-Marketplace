@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
@@ -52,8 +53,14 @@ function SignUp() {
         displayName: name,
       });
 
-      //redirect to home page
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      formDataCopy.timestamp = serverTimestamp();
 
+      //this then sets the database(from the data returned from promise)
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+
+      //redirect to home page
       navigate("/");
     } catch (error) {
       console.log(error);
