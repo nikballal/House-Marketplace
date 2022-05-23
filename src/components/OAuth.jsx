@@ -30,7 +30,7 @@ function OAuth() {
       }
       navigate("/");
     } catch (error) {
-      toast.error("Google Authentication Failed, please try again");
+      toast.error("Could not authorize with google");
     }
   };
 

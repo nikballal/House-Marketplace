@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 import ListingItem from "../components/ListingItem";
 
-function Offers() {
+function Category() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -25,7 +25,7 @@ function Offers() {
       try {
         //Get reference
         const listingsRef = collection(db, "listings");
-        //Create a query
+        //create a query
         const q = query(
           listingsRef,
           where("type", "==", params.categoryName),
@@ -88,4 +88,4 @@ function Offers() {
   );
 }
 
-export default Offers;
+export default Category;
