@@ -112,7 +112,7 @@ function CreateListing() {
     } else {
       geolocation.lat = latitude;
       geolocation.lng = longitude;
-      location = address;
+      // location = address; - removed and replaced with line 173
       console.log(geolocation, location);
     }
     //Store image in firebase
@@ -170,10 +170,11 @@ function CreateListing() {
       timestamp: serverTimestamp(),
     };
 
+    formDataCopy.location = address;
     delete formDataCopy.images;
     delete formDataCopy.address;
 
-    location && (formDataCopy.location = location);
+    // location && (formDataCopy.location = location); - removed and replaced with line 173
     !formDataCopy.offer && delete formDataCopy.discountedPrice;
 
     const docRef = await addDoc(collection(db, "listings"), formDataCopy);
